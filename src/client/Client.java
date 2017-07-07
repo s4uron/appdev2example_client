@@ -34,7 +34,7 @@ public class Client {
             String eingabe = "";
             boolean loop = true;
             while(loop) {
-                System.out.println("Benutzername oder 'exit' oder 'liste' oder 'clear' eingeben:");
+                System.out.println("Benutzername oder 'exit' oder 'liste' oder 'clear' oder '--benutzername' eingeben:");
                 eingabe = scanner.next();       
                 if(eingabe.equals("exit")) {
                     loop = false;
@@ -45,6 +45,10 @@ public class Client {
                 } else if(eingabe.equals("clear")) {
                     benutzerverwaltung.alleBenutzerLoeschen();
                     System.out.println("Alle Benutzer wurden gelöscht.");
+                    
+                } else if (eingabe.startsWith("--")) {
+                    eingabe = eingabe.substring(2);
+                    benutzerverwaltung.benutzerLoeschen(eingabe);
                 }else {
                     benutzerverwaltung.benutzerErstellen(eingabe);
                     System.out.println("Benutzer "+eingabe+" wurde angelegt.");
